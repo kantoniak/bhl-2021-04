@@ -2,6 +2,8 @@ package com.tpp.bhl
 
 import io.javalin.Javalin
 
+private const val CREATED_CODE = 201
+
 fun Javalin.apiRoutes() = routes {
 
     get("/stats/:conveyUUID") { context ->
@@ -11,14 +13,20 @@ fun Javalin.apiRoutes() = routes {
     }
 
     post("/enter") { context ->
-        val stringData = context.body<EnterData>()
-        ActionDao.addEnterData(stringData)
-        context.status(201)
+        val enterData = context.body<EnterData>()
+        ActionDao.addEnterData(enterData)
+        context.status(CREATED_CODE)
     }
 
     post("/exit") { context ->
-        val stringData = context.body<ExitData>()
-        ActionDao.addExitData(stringData)
-        context.status(201)
+        val exitData = context.body<ExitData>()
+        ActionDao.addExitData(exitData)
+        context.status(CREATED_CODE)
+    }
+
+    post("/reset") { context ->
+        val resetData = context.body<ResetData>()
+        ActionDao.addResetData(resetData)
+        context.status(CREATED_CODE)
     }
 }

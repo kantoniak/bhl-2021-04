@@ -16,12 +16,17 @@ object Database {
         )
     }
 
-    fun <T> execute(statement: Transaction.() -> T): T = transaction(db, statement)
+    fun <T> execute(statement: Transaction.() -> T) {
+        evaluate(statement)
+    }
+
+    fun <T> evaluate(statement: Transaction.() -> T): T = transaction(db, statement)
 
     fun initTables() = execute {
         SchemaUtils.createMissingTablesAndColumns(
             EnterEvent,
-            ExitEvent
+            ExitEvent,
+            ResetEvent
         )
     }
 }

@@ -15,3 +15,10 @@ object ExitEvent: IntIdTable() {
 
     val timestamp = long("timestamp")
 }
+
+object ResetEvent: IntIdTable() {
+
+    val conveyUUID = varchar("conveyUUID", 36)
+
+    val timestamp = long("timestamp")
+}
