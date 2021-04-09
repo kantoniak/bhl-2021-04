@@ -25,10 +25,15 @@ GPIO.setwarnings(False)
 GPIO.setup(pins, GPIO.OUT)
 GPIO.output(pins, GPIO.HIGH)
 
+# lambda p: pins[p]
+def get_pin(p):
+    print("PIN: "+p)
+    return pins[p]
+
 while (True):
     for i in range(len(digits)):
         print(digits[i])
-        pins = list(map(lambda p: pins[p], digits[i]))
+        pins = list(map(get_pin, digits[i]))
         print(pins)
         GPIO.output(pins, GPIO.LOW)
         time.sleep(0.2)
