@@ -26,9 +26,9 @@ class Display(object):
     
     def update(self):
         if (self.warning):
-            self.pixels.fill(COLOR_RED)
+            self.pixels.fill(self.COLOR_RED)
         else:
-            self.pixels.fill(COLOR_GREEN)
+            self.pixels.fill(self.COLOR_GREEN)
 
     def stop(self):
         self.shouldStop = True
