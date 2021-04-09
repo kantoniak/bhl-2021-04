@@ -8,7 +8,7 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 
 DISPLAY_PIN = board.D18
-LED_BRIGHTNESS = 0.2
+LED_BRIGHTNESS = 1
 
 COUNTER_DIGITS = [] # [[ABCDEFG], [ABCDEFG]]
 COUNTER_DIGITS.append([20, 21, 26, 13, 6, 16, 19]) # rightmost digit
