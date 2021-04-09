@@ -2,10 +2,9 @@ import RPi.GPIO as GPIO
 import time
 
 # [ABCDEFG, ABCDEFG]
-pinsInUse = [
-    [20, 21, 26, 13, 6, 16, 19] # rightmost digit
-    [1, 12, 5, 0, 11, 8, 7], # leftmost digit
-]
+pinsInUse = []
+pinsInUse.append([20, 21, 26, 13, 6, 16, 19]) # rightmost digit
+pinsInUse.append([1, 12, 5, 0, 11, 8, 7]) # leftmost digit
 
 class FJ8201BH(object):
 
