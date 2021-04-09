@@ -27,8 +27,9 @@ GPIO.output(pins, GPIO.HIGH)
 
 while (True):
     for i in range(len(digits)):
-        GPIO.output(digits[i], GPIO.LOW)
+        pins = map(lambda p: pins[p], digits[i])
+        GPIO.output(pins, GPIO.LOW)
         time.sleep(0.2)
-        GPIO.output(digits[i], GPIO.HIGH)
+        GPIO.output(pins, GPIO.HIGH)
 
 GPIO.output(pins, GPIO.LOW)
