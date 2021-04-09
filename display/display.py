@@ -10,7 +10,7 @@ class Display(object):
 
     def __init__(self):
         self.warning = False
-        self.stop = False
+        self.shouldStop = False
         self.pixels = neopixel.NeoPixel(board.D18, 1, brightness=0.5)
         self.thread = threading.Thread(target=self.loop)
 
@@ -18,7 +18,7 @@ class Display(object):
         self.thread.start()
 
     def loop(self):
-        while (not self.stop):
+        while (not self.shouldStop):
             self.pixels.fill(color_green)
             time.sleep(1)
             self.pixels.fill(color_red)
@@ -26,7 +26,7 @@ class Display(object):
         self.pixels.deinit()
     
     def stop(self):
-        self.stop = True
+        self.shouldStop = True
         self.thread.join()
 
 
