@@ -16,7 +16,7 @@ object ActionDao {
         exits += data
     }
 
-    fun calculateStatsDataFor(conveyUUID: UUID): StatsData {
+    fun calculateStatsDataFor(conveyUUID: String): StatsData {
         val entered = enters.filter { it.conveyUUID == conveyUUID }.size
         val exited = exits.filter { it.conveyUUID == conveyUUID }.size
         return StatsData(Integer.max(entered - exited, 0), entered, exited)
