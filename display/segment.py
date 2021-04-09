@@ -67,7 +67,7 @@ toDisplay = [None, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 c.start()
 while (True):
-    for i in range(len(toDisplay)):
-        c._setDigit(1, toDisplay[i])
+    for d in toDisplay):
+        c._setDigit(1, d)
 
 c.stop()
