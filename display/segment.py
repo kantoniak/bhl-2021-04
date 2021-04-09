@@ -74,5 +74,6 @@ c.start()
 while (True):
     for i in range(len(toDisplay)):
         c._setDigit(1, toDisplay[i])
+        time.sleep(0.2)
 
 c.stop()
