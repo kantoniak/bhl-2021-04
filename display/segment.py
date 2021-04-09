@@ -22,7 +22,7 @@ class FJ8201BH(object):
         [0, 1, 2, 3, 5, 6]
     ]
 
-    ALL_SEGMENTS = range(0, 6)
+    ALL_SEGMENTS = [0, 1, 2, 3, 4, 5, 6]
 
     def __init__(self, digitsToPins):
         self.digitsToPins = digitsToPins
@@ -63,7 +63,7 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 
 c = FJ8201BH(pinsInUse)
-toDisplay = [None] + range(0, 9)
+toDisplay = [None, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 c.start()
 while (True):
