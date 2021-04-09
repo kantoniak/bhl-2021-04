@@ -25,7 +25,8 @@ jobs:
           cd bhl-counter                                                                        
           find . -maxdepth 1 ! -path './.git' ! -path '.' -exec rm -rf {} +  
           git config --global user.email "deploy@heroku.com"
-          git config --global user.name "bhl-tpp"                            
+          git config --global user.name "bhl-tpp"
+          git commit . -m "Cleaned old data"
           cp -r ../server/* ./
           git add .
           git commit . -m "Deploy full refresh of app from ${{ github.ref }}"
