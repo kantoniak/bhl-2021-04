@@ -1,7 +1,7 @@
 import board
 import RPi.GPIO as GPIO
 import time
-from display import *
+from display import Display
 from FJ8201BH import *
 
 GPIO.setmode(GPIO.BCM)
@@ -15,20 +15,16 @@ COUNTER_DIGITS.append([20, 21, 26, 13, 6, 16, 19]) # rightmost digit
 COUNTER_DIGITS.append([1, 12, 5, 0, 11, 8, 7]) # leftmost digit
 
 d = Display(DISPLAY_PIN, LED_BRIGHTNESS, COUNTER_DIGITS)
-v = 0
 
-# Counts upwards every 200 ms and toggles warning mode each 5 values
+# Count upwards, trigger warning at 20
 try:
     d.start()
-    d.setValue(v)
-
-    warn = False
+    v = 0
     while (True):
-        v = v+1
+        v = v + 1
         d.setValue(v)
-        if (v % 5 == 0):
-            d.setWarning(warn)
-            warn = not warn
+        if (v == 20):
+            d.setWarning(True)
         time.sleep(0.2)
 except KeyboardInterrupt:
     pass
