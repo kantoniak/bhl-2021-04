@@ -27,7 +27,7 @@ GPIO.output(pins, GPIO.HIGH)
 
 # lambda p: pins[p]
 def get_pin(p):
-    print("PIN: "+p)
+    print("PIN: "+str(p))
     return pins[p]
 
 while (True):
