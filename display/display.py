@@ -4,10 +4,37 @@ import neopixel
 
 color_green = (0, 255, 0)
 color_red = (255, 0, 0)
-pixels = neopixel.NeoPixel(board.D18, 1)
 
-while (true):
-    pixels.fill(color_green)
-    time.sleep(1000)
-    pixel.fill(color_red)
-    time.sleep(1000)
+class Display(object):
+
+    def __init__(self):
+        self.warning = False
+        self.stop = False
+        self.pixels = neopixel.NeoPixel(board.D18, 1, brightness=0.5)
+        self.thread = threading.Thread(target=self.loop)
+
+    def start(self):
+        self.thread.start()
+
+    def loop(self):
+        while (not self.stop):
+            self.pixels.fill(color_green)
+            time.sleep(1)
+            self.pixels.fill(color_red)
+            time.sleep(1)
+        self.pixels.deinit()
+    
+    def stop(self):
+        self.stop = True
+        self.thread.join()
+
+
+d = Display()
+try:
+    d.start()
+    while (True):
+        pass
+except KeyboardInterrupt:
+    pass
+finally:
+    d.stop()
