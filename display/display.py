@@ -1,20 +1,19 @@
-import time
 import board
 import neopixel
 import threading
 
-color_green = (0, 255, 0)
-color_red = (255, 0, 0)
-
 class Display(object):
 
-    def __init__(self):
+    COLOR_GREEN = (0, 255, 0)
+    COLOR_RED = (255, 0, 0)
+
+    def __init__(self, pin, brightness):
         self.thread = threading.Thread(target=self.loop)
         self.flag = threading.Event()
         self.shouldStop = False
 
         self.warning = False
-        self.pixels = neopixel.NeoPixel(board.D18, 1, brightness=0.5)
+        self.pixels = neopixel.NeoPixel(pin, 1, brightness=brightness)
 
     def start(self):
         self.flag.clear()
@@ -28,9 +27,9 @@ class Display(object):
     
     def update(self):
         if (self.warning):
-            self.pixels.fill(color_red)
+            self.pixels.fill(COLOR_RED)
         else:
-            self.pixels.fill(color_green)
+            self.pixels.fill(COLOR_GREEN)
 
     def stop(self):
         self.shouldStop = True
@@ -40,18 +39,3 @@ class Display(object):
     def setWarning(self, value):
         self.warning = value
         self.flag.set()
-
-
-d = Display()
-try:
-    d.start()
-
-    warn = False
-    while (True):
-        d.setWarning(warn)
-        warn = not warn
-        time.sleep(1)
-except KeyboardInterrupt:
-    pass
-finally:
-    d.stop()
