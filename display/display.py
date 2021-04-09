@@ -1,6 +1,7 @@
 import time
 import board
 import neopixel
+import threading
 
 color_green = (0, 255, 0)
 color_red = (255, 0, 0)
