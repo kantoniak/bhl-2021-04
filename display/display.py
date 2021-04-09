@@ -1,18 +1,13 @@
 import time
-from neopixel import *
+import board
+import neopixel
 
-color_green = Color(0, 255, 0)
-color_red = Color(255, 0, 0)
-
-LED_PIN        = 18
-LED_BRIGHTNESS = 128 # 0 to 255
-strip = Adafruit_NeoPixel(1, LED_PIN, 800000, 5, False, LED_BRIGHTNESS)
-strip.begin()
+color_green = (0, 255, 0)
+color_red = (255, 0, 0)
+pixels = neopixel.NeoPixel(board.D18, 1)
 
 while (true):
-    strip.setPixelColor(i, color_green)
-    strip.show()
+    pixels.fill(color_green)
     time.sleep(1000)
-    strip.setPixelColor(i, color_red)
-    strip.show()
+    pixel.fill(color_red)
     time.sleep(1000)
