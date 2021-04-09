@@ -23,6 +23,7 @@ try:
 
     warn = False
     while (True):
+        d.setValue(v)
         v = v+1
         if (v % 5 == 0):
             d.setWarning(warn)
