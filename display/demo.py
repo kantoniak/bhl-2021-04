@@ -19,9 +19,6 @@ d = Display(DISPLAY_PIN, LED_BRIGHTNESS, COUNTER_DIGITS)
 # Count upwards, trigger warning at 20
 try:
     d.start()
-    d.setValue(58)
-    d.setWarning(True)
-
     v = 0
     while (True):
         v = v + 1
