@@ -15,5 +15,7 @@ try:
         time.sleep(1)
 except KeyboardInterrupt:
     pass
+except:
+    raise
 finally:
     d.stop()
