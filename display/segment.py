@@ -30,6 +30,7 @@ class FJ8201BH(object):
 
     def start(self):
         allPins = self._flatten(self.digitsToPins)
+        print(allPins)
         GPIO.setup(allPins, GPIO.OUT)
         GPIO.output(allPins, GPIO.HIGH)
 
