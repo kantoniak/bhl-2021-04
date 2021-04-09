@@ -54,7 +54,7 @@ class Display(object):
         self.thread.join()
     
     def setWarning(self, value):
-        if (self.warning == value)
+        if (self.warning == value):
             return
         
         self.warning = value
