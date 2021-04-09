@@ -6,13 +6,13 @@ class Display(object):
     COLOR_GREEN = (0, 255, 0)
     COLOR_RED = (255, 0, 0)
 
-    def __init__(self, pin, brightness):
+    def __init__(self, pin, led_brightness):
         self.thread = threading.Thread(target=self.loop)
         self.flag = threading.Event()
         self.shouldStop = False
 
         self.warning = False
-        self.pixels = neopixel.NeoPixel(pin, 1, brightness=brightness)
+        self.pixels = neopixel.NeoPixel(pin, 1, brightness=led_brightness)
 
     def start(self):
         self.flag.clear()
