@@ -47,7 +47,7 @@ class FJ8201BH(object):
             return
 
         segments = self.DIGIT_TO_SEGMENTS[value]
-        segmentsToPins = self.digitsToPins(numFromRight)
+        segmentsToPins = self.digitsToPins[numFromRight]
         pins = list(map(lambda s: segmentsToPins[s], segments))
         GPIO.output(pins, GPIO.LOW)
         nonPins = self.ALL_SEGMENTS - pins
