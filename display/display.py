@@ -40,7 +40,7 @@ class Display(object):
     def loop(self):
         while (not self.shouldStop):
             self.counterDisplay.setValue(self.value)
-            if (self.warning):
+            if (self.warning == True):
                 self._updateBlink()
             else:
                 self.pixels.fill(self.COLOR_GREEN)
