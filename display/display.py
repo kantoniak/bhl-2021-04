@@ -30,7 +30,7 @@ class Display(object):
 
         self.warning = False
         self.blinkState = BlinkState.not_blinking
-        self.lastBlinkChange = None
+        self.lastBlinkChange = time.time()
 
     def start(self):
         self.counterDisplay.start()
