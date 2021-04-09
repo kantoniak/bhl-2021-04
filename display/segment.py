@@ -42,15 +42,15 @@ class FJ8201BH(object):
             return
 
         if (value == None):
-            GPIO.output(ALL_SEGMENTS, GPIO.HIGH)
+            GPIO.output(self.ALL_SEGMENTS, GPIO.HIGH)
             self.display[numFromRight] = None
             return
 
-        segments = DIGIT_TO_SEGMENTS[value]
+        segments = self.DIGIT_TO_SEGMENTS[value]
         segmentsToPins = self.digitsToPins(numFromRight)
         pins = list(map(lambda s: segmentsToPins[s], segments))
         GPIO.output(pins, GPIO.LOW)
-        nonPins = ALL_SEGMENTS - pins
+        nonPins = self.ALL_SEGMENTS - pins
         GPIO.output(nonPins, GPIO.HIGH)
 
         self.display[numFromRight] = value
