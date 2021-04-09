@@ -79,7 +79,7 @@ pinsInUse.append([20, 21, 26, 13, 6, 16, 19]) # rightmost digit
 pinsInUse.append([1, 12, 5, 0, 11, 8, 7]) # leftmost digit
 
 c = FJ8201BH(pinsInUse)
-toDisplay = [None, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+toDisplay = [None, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
 
 c.start()
 while (True):
