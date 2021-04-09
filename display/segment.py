@@ -22,8 +22,8 @@ digits = [
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 
-GPIO.setup(pins, GPIO.OUT)
-GPIO.output(pins, GPIO.HIGH)
+GPIO.setup(pinsInUse, GPIO.OUT)
+GPIO.output(pinsInUse, GPIO.HIGH)
 
 print(pins[3])
 
