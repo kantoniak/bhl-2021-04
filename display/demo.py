@@ -1,7 +1,7 @@
 import board
 import RPi.GPIO as GPIO
 import time
-from display import *
+from display import Display
 from FJ8201BH import *
 
 GPIO.setmode(GPIO.BCM)
