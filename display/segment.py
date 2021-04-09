@@ -41,4 +41,4 @@ while (True):
         time.sleep(0.2)
         GPIO.output(pins, GPIO.HIGH)
 
-GPIO.output(pins, GPIO.LOW)
+GPIO.output(pinsInUse, GPIO.LOW)
