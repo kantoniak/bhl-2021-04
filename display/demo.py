@@ -17,14 +17,15 @@ COUNTER_DIGITS.append([1, 12, 5, 0, 11, 8, 7]) # leftmost digit
 d = Display(DISPLAY_PIN, LED_BRIGHTNESS, COUNTER_DIGITS)
 v = 0
 
+# Counts upwards every 200 ms and toggles warning mode each 5 values
 try:
     d.start()
     d.setValue(v)
 
     warn = False
     while (True):
-        d.setValue(v)
         v = v+1
+        d.setValue(v)
         if (v % 5 == 0):
             d.setWarning(warn)
             warn = not warn
