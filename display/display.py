@@ -15,8 +15,8 @@ class Display(object):
     COLOR_RED = (255, 0, 0)
     NO_COLOR = (0, 0, 0)
 
-    BLINK_VISIBLE_TIME = 0.25
-    BLINK_HIDDEN_TIME = 0.25
+    BLINK_VISIBLE_TIME = 0.4
+    BLINK_HIDDEN_TIME = 0.2
 
     def __init__(self, pin, ledBrightness, counterDigits):
         self.thread = threading.Thread(target=self.loop)
