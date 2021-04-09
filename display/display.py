@@ -1,4 +1,3 @@
-import board
 import neopixel
 import threading
 
