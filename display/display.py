@@ -82,16 +82,17 @@ class Display(object):
         last_time = self.lastBlinkChange
         delta = current_time - last_time
         print(delta)
-        self.lastBlinkChange = current_time
         if (self.blinkState == BlinkState.visible):
             if (delta > self.BLINK_VISIBLE_TIME):
                 self.pixels.fill(self.NO_COLOR)
                 self.blinkState = BlinkState.hidden
+                self.lastBlinkChange = current_time
             self.flag.wait(self.BLINK_VISIBLE_TIME - delta)
         elif (self.blinkState == BlinkState.hidden):
             if (delta > self.BLINK_HIDDEN_TIME):
                 self.pixels.fill(self.COLOR_RED)
                 self.blinkState = BlinkState.visible
+                self.lastBlinkChange = current_time
             self.flag.wait(self.BLINK_HIDDEN_TIME - delta)
         else:
             self.flag.wait()
