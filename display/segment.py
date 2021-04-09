@@ -27,9 +27,8 @@ GPIO.output(pins, GPIO.HIGH)
 
 while (True):
     for i in range(len(digits)):
-        pins = map(lambda p: pins[p], digits[i])
-        print(pins)
-        ping = list(pins)
+        print(digits[i])
+        pins = list(map(lambda p: pins[p], digits[i]))
         print(pins)
         GPIO.output(pins, GPIO.LOW)
         time.sleep(0.2)
