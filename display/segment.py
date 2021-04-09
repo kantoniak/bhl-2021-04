@@ -52,6 +52,7 @@ class FJ8201BH(object):
         pins = list(map(lambda s: segmentsToPins[s], segments))
         GPIO.output(pins, GPIO.LOW)
         nonPins = [x for x in self.ALL_SEGMENTS if x not in pins]
+        print(nonPins)
         GPIO.output(nonPins, GPIO.HIGH)
 
         self.display[numFromRight] = value
