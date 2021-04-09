@@ -4,7 +4,6 @@ on:
   push:
     branches:
     - 'master'
-    - 'avan125/workflow-setup'
     paths:
     - 'server/**'
     - '.github/workflows/deploy_server.yaml'
