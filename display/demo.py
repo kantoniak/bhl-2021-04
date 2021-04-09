@@ -16,6 +16,7 @@ COUNTER_DIGITS.append([1, 12, 5, 0, 11, 8, 7]) # leftmost digit
 
 d = Display(DISPLAY_PIN, LED_BRIGHTNESS, COUNTER_DIGITS)
 
+# Count upwards, trigger warning at 20
 try:
     d.start()
     d.setValue(58)
@@ -26,7 +27,7 @@ try:
         v = v + 1
         d.setValue(v)
         if (v == 20):
-            d.setWarning(true)
+            d.setWarning(True)
         time.sleep(0.2)
 except KeyboardInterrupt:
     pass
