@@ -1,24 +1,34 @@
 package com.tpp.bhl
 
-import java.util.*
+import org.jetbrains.exposed.sql.insert
+import org.jetbrains.exposed.sql.select
+import java.lang.Long.max
 
 object ActionDao {
 
-    private val enters: MutableList<EnterData> = mutableListOf()
-
-    private val exits: MutableList<ExitData> = mutableListOf()
-
     fun addEnterData(data: EnterData) {
-        enters += data
+        Database.execute {
+            EnterEvent.insert {
+                it[conveyUUID] = data.conveyUUID
+                it[timestamp] = data.timestamp
+            }
+        }
     }
 
     fun addExitData(data: ExitData) {
-        exits += data
+        Database.execute {
+            ExitEvent.insert {
+                it[conveyUUID] = data.conveyUUID
+                it[timestamp] = data.timestamp
+            }
+        }
     }
 
     fun calculateStatsDataFor(conveyUUID: String): StatsData {
-        val entered = enters.filter { it.conveyUUID == conveyUUID }.size
-        val exited = exits.filter { it.conveyUUID == conveyUUID }.size
-        return StatsData(Integer.max(entered - exited, 0), entered, exited)
+        return Database.execute {
+            val entered = EnterEvent.select { EnterEvent.conveyUUID eq conveyUUID }.count()
+            val exited = ExitEvent.select { ExitEvent.conveyUUID eq conveyUUID }.count()
+            StatsData(max(entered - exited, 0), entered, exited)
+        }
     }
 }

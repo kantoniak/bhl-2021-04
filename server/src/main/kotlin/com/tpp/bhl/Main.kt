@@ -1,18 +1,15 @@
 package com.tpp.bhl
 
 import io.javalin.Javalin
-import io.javalin.apibuilder.ApiBuilder.*
-import java.util.*
 
 fun main() {
+    Database.initTables()
+
     Javalin.create()
-        .apply {
-            exception(Exception::class.java) { e, _ -> e.printStackTrace() } }
-        .start("0.0.0.0", getEnvPort())
+        .apply { exception(Exception::class.java) { e, _ -> e.printStackTrace() } }
+        .start("0.0.0.0", Env.getServerPort())
         .apiRoutes()
 }
 
-private fun getEnvPort(defaultPort: Int = 8080): Int {
-    val herokuPort = System.getenv("PORT")
-    return herokuPort?.toInt() ?: defaultPort
-}
+
+
