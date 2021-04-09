@@ -2,45 +2,61 @@ package com.tpp.bhl
 
 import io.javalin.Javalin
 import io.javalin.apibuilder.ApiBuilder.*
+import java.lang.Integer.max
+import java.time.Instant
+import java.util.*
 
-data class StringData(val id: Long, val data: String)
+data class EnterData(val conveyUUID: UUID, val timestamp: Instant)
 
-class StringDao {
+data class ExitData(val conveyUUID: UUID, val timestamp: Instant)
 
-    val strings: MutableList<StringData> = mutableListOf() // Server starts with empty list
+data class StatsData(val current: Int, val enters: Int, val exists: Int)
 
-    fun addStringData(data: StringData) {
-        strings.add(data)
+object ActionDao {
+
+    private val enters: MutableList<EnterData> = mutableListOf()
+
+    private val exits: MutableList<ExitData> = mutableListOf()
+
+    fun addEnterData(data: EnterData) {
+        enters += data
     }
 
-    fun removeStringData(stringId: Long): Boolean = strings.removeIf { it.id == stringId }
+    fun addExitData(data: ExitData) {
+        exits += data
+    }
+
+    fun calculateStatsDataFor(conveyUUID: UUID): StatsData {
+        val entered = enters.filter { it.conveyUUID == conveyUUID }.size
+        val exited = exits.filter { it.conveyUUID == conveyUUID }.size
+        return StatsData(max(entered - exited, 0), entered, exited)
+    }
 }
 
 fun main() {
-    val stringDao = StringDao()
 
     val app = Javalin.create().apply {
         exception(Exception::class.java) { e, _ -> e.printStackTrace() }
     }.start("0.0.0.0", getEnvPort())
 
     app.routes {
-        get("/strings") { context ->
-            context.json(stringDao.strings)
+        get("/stats/:conveyUUID") { context ->
+            val conveyUUID = context.pathParam("conveyUUID")
+            val uuid = UUID.fromString(conveyUUID)
+            val stats = ActionDao.calculateStatsDataFor(uuid)
+            context.json(stats)
         }
 
-        post("/strings") { context ->
-            val stringData = context.body<StringData>()
-            stringDao.addStringData(stringData)
+        post("/enter") { context ->
+            val stringData = context.body<EnterData>()
+            ActionDao.addEnterData(stringData)
             context.status(201)
         }
 
-        delete("/strings/:stringId") { context ->
-            stringDao.removeStringData(context.pathParam("stringId").toLongOrNull() ?: -1).let {
-                if (it)
-                    context.status(204)
-                else
-                    context.status(400)
-            }
+        post("/exit") { context ->
+            val stringData = context.body<ExitData>()
+            ActionDao.addExitData(stringData)
+            context.status(201)
         }
     }
 }
