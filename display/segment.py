@@ -47,11 +47,15 @@ class FJ8201BH(object):
             self.display[numFromRight] = None
             return
 
+        # Light up active
         segments = self.DIGIT_TO_SEGMENTS[value]
         segmentsToPins = self.digitsToPins[numFromRight]
         pins = list(map(lambda s: segmentsToPins[s], segments))
         GPIO.output(pins, GPIO.LOW)
-        nonPins = [x for x in self.ALL_SEGMENTS if x not in pins]
+        
+        # Turn down others
+        allDigitPins = list(map(lambda s: segmentsToPins[s], self.ALL_SEGMENTS))
+        nonPins = [x for x in allDigitPins if x not in pins]
         print(nonPins)
         GPIO.output(nonPins, GPIO.HIGH)
 
