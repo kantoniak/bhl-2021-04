@@ -39,12 +39,18 @@ class Display(object):
 
     def loop(self):
         while (not self.shouldStop):
-            self.counterDisplay.setValue(self.value)
+
+            if (self.blinkState == BlinkState.hidden):
+                self.counterDisplay.setValue(None)
+            else:
+                self.counterDisplay.setValue(self.value)
+
             if (self.warning == True):
                 self._updateBlink()
             else:
                 self.pixels.fill(self.COLOR_GREEN)
                 self.flag.wait()
+
         self.counterDisplay.stop()
         self.pixels.deinit()
 
@@ -52,36 +58,35 @@ class Display(object):
         self.shouldStop = True
         self.flag.set()
         self.thread.join()
-    
+
     def setWarning(self, value):
         if (self.warning == value):
             return
-        
+
         self.warning = value
         if (self.warning):
             self._startBlinking()
         else:
             self._stopBlinking()
         self.flag.set()
-    
+
     def setValue(self, value):
         self.value = value
         self.flag.set()
-    
+
     def _startBlinking(self):
         self.pixels.fill(self.COLOR_RED)
         self.blinkState = BlinkState.visible
         self.lastBlinkChange = time.time()
-    
+
     def _stopBlinking(self):
         self.blinkState = BlinkState.not_blinking
         self.lastBlinkChange = None
-    
+
     def _updateBlink(self):
         current_time = time.time()
         last_time = self.lastBlinkChange
         delta = current_time - last_time
-        print(delta)
         if (self.blinkState == BlinkState.visible):
             if (delta > self.BLINK_VISIBLE_TIME):
                 self.pixels.fill(self.NO_COLOR)
@@ -96,4 +101,4 @@ class Display(object):
             self.flag.wait(self.BLINK_HIDDEN_TIME - delta)
         else:
             self.flag.wait()
-            
+
