@@ -81,6 +81,7 @@ class Display(object):
         current_time = time.time()
         last_time = self.lastBlinkChange
         delta = current_time - last_time
+        print(delta)
         self.lastBlinkChange = current_time
         if (self.blinkState == BlinkState.visible):
             if (delta > self.BLINK_VISIBLE_TIME):
