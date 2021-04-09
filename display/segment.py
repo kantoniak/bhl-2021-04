@@ -26,7 +26,7 @@ GPIO.setup(pins, GPIO.OUT)
 GPIO.output(pins, GPIO.HIGH)
 
 while (True):
-    for i in range(len(pins)):
+    for i in range(len(digits)):
         GPIO.output(digits[i], GPIO.LOW)
         time.sleep(0.2)
         GPIO.output(digits[i], GPIO.HIGH)
