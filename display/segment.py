@@ -37,7 +37,7 @@ class FJ8201BH(object):
         if (value == None or value < 0):
             toDisplay = [None, None]
         else:
-            toDisplay = [value % 10, value % 100]
+            toDisplay = [value % 10, (value // 10) % 10]
             if toDisplay[1] == 0:
                 toDisplay[1] = None
         
