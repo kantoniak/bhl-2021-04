@@ -10,7 +10,7 @@ class Display(object):
 
     def __init__(self):
         self.thread = threading.Thread(target=self.loop)
-        self.flag = Event()
+        self.flag = threading.Event()
         self.shouldStop = False
 
         self.warning = False
