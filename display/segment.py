@@ -38,22 +38,22 @@ class FJ8201BH(object):
         GPIO.output(allPins, GPIO.HIGH)
 
     def _setDigit(self, numFromRight, value):
-        if (self.display(numFromRight) == value):
+        if (self.display[numFromRight] == value):
             return
 
         if (value == None):
             GPIO.output(self.ALL_SEGMENTS, GPIO.HIGH)
-            self.display(numFromRight) = None
+            self.display[numFromRight] = None
             return
 
-        segments = self.DIGIT_TO_SEGMENTS(value)
+        segments = self.DIGIT_TO_SEGMENTS[value]
         segmentsToPins = self.digitsToPins(numFromRight)
-        pins = list(map(lambda s: segmentsToPins(s), segments))
+        pins = list(map(lambda s: segmentsToPins[s], segments))
         GPIO.output(pins, GPIO.LOW)
         nonPins = self.ALL_SEGMENTS - pins
         GPIO.output(nonPins, GPIO.HIGH)
 
-        self.display(numFromRight) = value
+        self.display[numFromRight] = value
 
     def _flatten(self, l):
         return [item for sublist in l for item in sublist]
@@ -67,7 +67,7 @@ toDisplay = [None, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 c.start()
 while (True):
-    for d in toDisplay:
-        c._setDigit(1, d)
+    for i in range(len(toDisplay)):
+        c._setDigit(1, toDisplay[i])
 
 c.stop()
