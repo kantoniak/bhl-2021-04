@@ -31,6 +31,11 @@ def exited():
     post(f"{BASE_URL}/exit", exit_data)
 
 
+def reset():
+    reset_data = _serialize_out_data(CONVEY_UUID, _now())
+    post(f"{BASE_URL}/reset", reset_data)
+
+
 def get_stats():
     stats = get(f"{BASE_URL}/stats/{CONVEY_UUID}").content
     return _deserialize_in_data(stats)
