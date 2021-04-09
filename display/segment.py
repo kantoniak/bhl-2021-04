@@ -25,8 +25,6 @@ GPIO.setwarnings(False)
 GPIO.setup(pinsInUse, GPIO.OUT)
 GPIO.output(pinsInUse, GPIO.HIGH)
 
-print(pins[3])
-
 # lambda p: pins[p]
 def get_pin(p):
     print("PIN: "+str(p)+" -> "+str(pinsInUse[p]))
