@@ -3,7 +3,7 @@ from display import Display
 import time
 
 DISPLAY_PIN = board.D18
-LED_BRIGHTNESS = 0.5
+LED_BRIGHTNESS = 0.2
 
 d = Display(DISPLAY_PIN, LED_BRIGHTNESS)
 try:
