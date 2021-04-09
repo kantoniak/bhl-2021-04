@@ -8,7 +8,8 @@ pinsInUse = [
 ]
 
 # Maps digit to list of segments, where 0=A, 1=B etc.
-digits = [ 
+digits = [
+    [0, 1, 2, 3, 4, 5],
     [1, 2],
     [0, 1, 3, 4, 6],
     [0, 1, 2, 3, 6],
@@ -16,7 +17,8 @@ digits = [
     [0, 2, 3, 5, 6],
     [0, 2, 3, 4, 5, 6],
     [0, 1, 2],
-    [0, 1, 2, 3, 4, 5, 6]
+    [0, 1, 2, 3, 4, 5, 6],
+    [0, 1, 2, 3, 5, 6]
 ]
 
 GPIO.setmode(GPIO.BCM)
