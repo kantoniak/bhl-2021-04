@@ -18,3 +18,6 @@ while (True):
         GPIO.output(pins[i], GPIO.LOW)
         time.sleep(0.2)
         GPIO.output(pins[i], GPIO.HIGH)
+    break
+
+GPIO.output(pins, GPIO.LOW)
