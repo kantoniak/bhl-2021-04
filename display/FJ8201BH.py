@@ -1,5 +1,4 @@
 import RPi.GPIO as GPIO
-import time
 
 class FJ8201BH(object):
 
@@ -40,7 +39,7 @@ class FJ8201BH(object):
             toDisplay = [value % 10, (value // 10) % 10]
             if toDisplay[1] == 0:
                 toDisplay[1] = None
-        
+
         self._setDigit(0, toDisplay[0])
         self._setDigit(1, toDisplay[1])
 
@@ -59,7 +58,7 @@ class FJ8201BH(object):
         segments = self.DIGIT_TO_SEGMENTS[value]
         pins = list(map(lambda s: segmentsToPins[s], segments))
         GPIO.output(pins, GPIO.LOW)
-        
+
         # Turn down others
         nonPins = [x for x in allDigitPins if x not in pins]
         GPIO.output(nonPins, GPIO.HIGH)
@@ -68,22 +67,3 @@ class FJ8201BH(object):
 
     def _flatten(self, l):
         return [item for sublist in l for item in sublist]
-
-
-GPIO.setmode(GPIO.BCM)
-GPIO.setwarnings(False)
-
-pinsInUse = [] # [[ABCDEFG], [ABCDEFG]]
-pinsInUse.append([20, 21, 26, 13, 6, 16, 19]) # rightmost digit
-pinsInUse.append([1, 12, 5, 0, 11, 8, 7]) # leftmost digit
-
-c = FJ8201BH(pinsInUse)
-toDisplay = [None, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
-
-c.start()
-while (True):
-    for d in toDisplay:
-        c.setValue(d)
-        time.sleep(0.2)
-
-c.stop()
