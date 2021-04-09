@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 import time
 
 # ABCDEFGABCDEFG...
-pins = [
+pinsInUse = [
     1, 12, 5, 0, 11, 8, 7, # leftmost digit
     20, 21, 26, 13, 6, 16, 19 # rightmost digit
 ]
@@ -29,8 +29,8 @@ print(pins[3])
 
 # lambda p: pins[p]
 def get_pin(p):
-    print("PIN: "+str(p)+" -> "+str(pins[p]))
-    return pins[p]
+    print("PIN: "+str(p)+" -> "+str(pinsInUse[p]))
+    return pinsInUse[p]
 
 while (True):
     for i in range(len(digits)):
