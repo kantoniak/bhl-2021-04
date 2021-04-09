@@ -21,8 +21,13 @@ try:
     d.setValue(58)
     d.setWarning(True)
 
+    v = 0
     while (True):
-        pass
+        v = v + 1
+        d.setValue(v)
+        if (v == 20):
+            d.setWarning(true)
+        time.sleep(0.2)
 except KeyboardInterrupt:
     pass
 except:
