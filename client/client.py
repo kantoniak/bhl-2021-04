@@ -4,12 +4,12 @@ from uuid import uuid4
 from requests import get, post
 
 
-CONVEY_UUID = "bhl-tpp"  # str(uuid4())
+CONVEY_UUID = "bhl-tpp-2"  # str(uuid4())
 BASE_URL = "http://bhl-counter.herokuapp.com"
 
 
 def _now():
-    return int(datetime.now().timestamp())
+    return int((datetime.utcnow() - datetime(1970, 1, 1)).total_seconds() * 1000)
 
 
 def _serialize_out_data(uuid, timestamp):
