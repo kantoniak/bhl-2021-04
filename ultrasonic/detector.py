@@ -22,11 +22,12 @@ if __name__ == '__main__':
             if (change != 0):
                 # print(f"Counter change: {change}")
                 counter += change
+                print(f"Current counter: {counter}")
 
-            print(f"Current counter: {counter}")
             time.sleep(5)
 
     except KeyboardInterrupt:
         sensor.stop()
         print("Stopped.")
         GPIO.cleanup()
+

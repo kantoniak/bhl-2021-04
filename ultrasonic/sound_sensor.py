@@ -2,12 +2,13 @@ import threading
 from ultra_sensor import distance
 import RPi.GPIO as GPIO
 import time
+import math
 
 class UltrasoundSensor(object):
 
-    MIN_LEN = 0.5
+    MIN_LEN = 0.4
     INIT_TIME = 2
-    TIME_SPAN = 2
+    TIMEOUT = 2
 
     def __init__(self, triger_enter,  echo_enter, triger_exit, echo_exit):
         self.TRIGER_ENTER = triger_enter
@@ -44,6 +45,53 @@ class UltrasoundSensor(object):
         return tmp
 
     def loop(self):
+        self.initSensor()
+
+        sequence = ""
+        interval_start = math.inf
+
+        while (self.run):
+            enter_dist = distance(self.TRIGER_ENTER, self.ECHO_ENTER)
+            exit_dist = distance(self.TRIGER_EXIT, self.ECHO_EXIT)
+
+            # print("Enter: %.1f cm" % enter_dist)
+            # print("Exit: %.1f cm" % exit_dist)
+
+            enter_state = self.enterLen * self.MIN_LEN > enter_dist
+            exit_state = self.exitLen * self.MIN_LEN > exit_dist
+
+            if (enter_state and (not sequence or (sequence and sequence[0] != '1'))):
+                sequence += "1"
+                if(len(sequence) == 1):
+                    interval_start = time.time()
+
+            elif (exit_state and (not sequence or (sequence and sequence[0] != '2'))):
+                sequence += "2"
+                if(len(sequence) == 1):
+                    interval_start = time.time()
+            
+            if (sequence == "12"):
+                self.counter += 1
+                print("Enter detected.")
+                sequence = ""
+                time.sleep(0.2)
+
+            elif (sequence == "21"):
+                self.counter -= 1
+                print("Exit detected.")
+                sequence = ""
+                time.sleep(0.2)
+
+            
+            if (len(sequence) > 2 or sequence == "11" or sequence == "22" or time.time() - interval_start > self.TIMEOUT):
+                sequence = ""
+                interval_start = math.inf
+
+            # print("\n\n")
+            time.sleep(0.1)
+        print("Ultrasound sensor loop ended.")
+
+    def initSensor(self):
         start_time = time.time()
         
         enterSum = 0
@@ -53,46 +101,10 @@ class UltrasoundSensor(object):
             enterSum += distance(self.TRIGER_ENTER, self.ECHO_ENTER)
             exitSum += distance(self.TRIGER_EXIT, self.ECHO_EXIT)
             n += 1
+            time.sleep(0.1)
         self.enterLen = enterSum / n
         self.exitLen = exitSum / n
 
         print("Enter sensor length: %.1f cm" % self.enterLen)
         print("Exit sensor length: %.1f cm" % self.exitLen)
 
-        last_time = time.time()
-        enter_crossed = False
-        exit_crossed = False
-
-        while (self.run):
-            enter_dist = distance(self.TRIGER_ENTER, self.ECHO_ENTER)
-            exit_dist = distance(self.TRIGER_EXIT, self.ECHO_EXIT)
-
-            print("Enter: %.1f cm" % enter_dist)
-            print("Exit: %.1f cm" % exit_dist)
-
-            enter_state = self.enterLen * self.MIN_LEN >= enter_dist
-            exit_state = self.exitLen * self.MIN_LEN >= exit_dist
-
-            
-            if (enter_crossed and not exit_crossed):
-                if (exit_state):
-                    print("Enter detected.")
-                    self.counter += 1
-                    enter_crossed = True
-                    exit_crossed = True
-                    continue
-
-            elif (not enter_crossed and exit_crossed):
-                if (enter_state):
-                    print("Exit detected.")
-                    self.counter -= 1
-                    enter_crossed = True
-                    exit_crossed = True
-                    continue
-
-            enter_crossed = enter_state
-            exit_crossed = exit_state
-            print("\n\n")
-            time.sleep(1)
-
-        print("Ultrasound sensor loop ended.")
