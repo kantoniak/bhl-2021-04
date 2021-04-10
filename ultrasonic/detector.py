@@ -14,17 +14,10 @@ if __name__ == '__main__':
 
     try:
         sensor = UltrasoundSensor(GPIO_TRIGGER_ENTER, GPIO_ECHO_ENTER, GPIO_TRIGGER_EXIT, GPIO_ECHO_EXIT)
-        counter = 0
 
         sensor.start()
         while True:
-            change = sensor.getCounter()
-            if (change != 0):
-                # print(f"Counter change: {change}")
-                counter += change
-                print(f"Current counter: {counter}")
-
-            time.sleep(2)
+            time.sleep(1)
 
     except KeyboardInterrupt:
         sensor.stop()

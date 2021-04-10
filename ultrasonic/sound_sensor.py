@@ -3,6 +3,7 @@ from ultra_sensor import distance
 import RPi.GPIO as GPIO
 import time
 import math
+import client.client
 
 class UltrasoundSensor(object):
 
@@ -71,14 +72,12 @@ class UltrasoundSensor(object):
                     interval_start = time.time()
             
             if (sequence == "12"):
-                self.counter += 1
-                print("Enter detected.")
+                self.enterDetected()
                 sequence = ""
                 time.sleep(0.2)
 
             elif (sequence == "21"):
-                self.counter -= 1
-                print("Exit detected.")
+                self.exitDetected()
                 sequence = ""
                 time.sleep(0.2)
 
@@ -108,3 +107,10 @@ class UltrasoundSensor(object):
         print("Enter sensor length: %.1f cm" % self.enterLen)
         print("Exit sensor length: %.1f cm" % self.exitLen)
 
+    def enterDetected(self):
+        print("Enter detected.")
+        client.entered()
+
+    def exitDetected(self):
+        print("Exit detected.")
+        client.exited()
