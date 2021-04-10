@@ -17,7 +17,7 @@ Display shows the number of people who entered the space. When treshold is reach
 </p>
 
 <p align="center">
-    <a href="readme/readme/display-schematic.svg"><img src="readme/display-schematic.svg" width="600" /></a>
+    <a href="readme/display-schematic.svg"><img src="readme/display-schematic.svg" width="600" /></a>
 </p>
 
 ## Control panel
