@@ -7,7 +7,7 @@ It comprises:
 * displays with a warning sign for visitors,
 * control panels for security.
 
-See demo: https://www.youtube.com/watch?v=Mto_cI-SvnQ
+See demo: https://youtu.be/eT9w5s_Paic
 
 ## Hardware
 
