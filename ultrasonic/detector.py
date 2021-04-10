@@ -24,7 +24,7 @@ if __name__ == '__main__':
                 counter += change
                 print(f"Current counter: {counter}")
 
-            time.sleep(5)
+            time.sleep(2)
 
     except KeyboardInterrupt:
         sensor.stop()

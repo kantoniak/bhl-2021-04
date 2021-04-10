@@ -88,7 +88,7 @@ class UltrasoundSensor(object):
                 interval_start = math.inf
 
             # print("\n\n")
-            time.sleep(0.1)
+            # time.sleep(0.1)
         print("Ultrasound sensor loop ended.")
 
     def initSensor(self):
