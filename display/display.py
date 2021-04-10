@@ -1,8 +1,14 @@
 from enum import Enum
+import board
 import neopixel
 import time
 import threading
 from FJ8201BH import *
+
+DISPLAY_PIN = board.D18
+LED_BRIGHTNESS = 1
+COUNTER_DIGITS = [[20, 21, 26, 13, 6, 16, 19],
+                  [1, 12, 5, 0, 11, 8, 7]]
 
 class BlinkState(Enum):
     not_blinking = 0
@@ -18,7 +24,7 @@ class Display(object):
     BLINK_VISIBLE_TIME = 0.8
     BLINK_HIDDEN_TIME = 0.5
 
-    def __init__(self, pin, ledBrightness, counterDigits):
+    def __init__(self, pin=DISPLAY_PIN, ledBrightness=LED_BRIGHTNESS, counterDigits=COUNTER_DIGITS):
         self.thread = threading.Thread(target=self.loop)
         self.flag = threading.Event()
         self.shouldStop = False
