@@ -1,3 +1,7 @@
+import os
+import sys
+sys.path.append(os.getcwd() + '/../client')
+
 import threading
 from ultra_sensor import distance
 import RPi.GPIO as GPIO

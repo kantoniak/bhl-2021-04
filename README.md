@@ -27,6 +27,18 @@ Control panel lets staff to quickly adjust recorded occupancy by:
     <img src="readme/control-panel.jpg" width="300" />
 </p>
 
+## Ultrasound sensors
+
+A pair of HC-SR04 ultrasound sensors detects when someone enter or exit room.
+It sends events to main server thus can operate as standalone device based on Raspberry PI.
+
+Beside power and ground pins, the sensors require 4 GPIO pins (each sensor has TRIGER and ECHO pins).
+
+<p align="center">
+    <img src="readme/ultrasound.jpg" width="400" />
+</p>
+
+
 ## Development
 
 Pins in use:
