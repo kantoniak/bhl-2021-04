@@ -5,7 +5,7 @@ from requests import get, post
 
 
 CONVEY_UUID = "bhl-tpp"  # str(uuid4())
-BASE_URL = "https://bhl-counter.herokuapp.com"
+BASE_URL = "http://localhost:8080"
 
 
 def _now():
