@@ -87,7 +87,7 @@ class Display(object):
 
     def _stopBlinking(self):
         self.blinkState = BlinkState.not_blinking
-        self.lastBlinkChange = None
+        self.lastBlinkChange = time.time()
 
     def _updateBlink(self):
         current_time = time.time()
