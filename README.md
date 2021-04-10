@@ -7,7 +7,24 @@ It comprises:
 * displays with a warning sign for visitors,
 * control panels for security.
 
-## Display
+## Hardware
+
+### Ultrasound and beam sensors
+
+A pair of HC-SR04 ultrasound sensors detects when someone enter or exit room.
+It sends events to main server thus can operate as standalone device based on Raspberry PI.
+
+Beside power and ground pins, the sensors require 4 GPIO pins (each sensor has TRIGGER and ECHO pins).
+
+<p align="center">
+    <a href="readme/ultrasound.jpg"><img src="readme/ultrasound.jpg" width="400" /></a>
+</p>
+
+<p align="center">
+    <a href="readme/sensors-schematic.svg"><img src="readme/sensors-schematic.svg" width="600" /></a>
+</p>
+
+### Display
 
 Display shows the number of people who entered the space. When treshold is reached, warning light turns red and the display is blinking.
 
@@ -20,7 +37,7 @@ Display shows the number of people who entered the space. When treshold is reach
     <a href="readme/display-schematic.svg"><img src="readme/display-schematic.svg" width="600" /></a>
 </p>
 
-## Control panel
+### Control panel
 
 Control panel lets staff quickly adjust recorded occupancy by:
 * adding to counter,
@@ -34,18 +51,6 @@ Control panel lets staff quickly adjust recorded occupancy by:
 <p align="center">
     <a href="readme/control-panel-schematic.svg"><img src="readme/control-panel-schematic.svg" width="300" /></a>
 </p>
-
-## Ultrasound sensors
-
-A pair of HC-SR04 ultrasound sensors detects when someone enter or exit room.
-It sends events to main server thus can operate as standalone device based on Raspberry PI.
-
-Beside power and ground pins, the sensors require 4 GPIO pins (each sensor has TRIGER and ECHO pins).
-
-<p align="center">
-    <img src="readme/ultrasound.jpg" width="400" />
-</p>
-
 
 ## Development
 
