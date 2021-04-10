@@ -9,11 +9,15 @@ It comprises:
 
 ## Display
 
-Display show the number of people currently in the space. When treshold is reached, warning light turns red and the display is blinking.
+Display shows the number of people who entered the space. When treshold is reached, warning light turns red and the display is blinking.
 
 <p align="center">
-    <img src="readme/display-green.jpg" width="300" />
-    <img src="readme/display-red.jpg" width="300" />
+    <a href="readme/display-green.jpg"><img src="readme/display-green.jpg" width="300" /></a>
+    <a href="readme/display-red.jpg"><img src="readme/display-red.jpg" width="300" /></a>
+</p>
+
+<p align="center">
+    <a href="readme/readme/display-schematic.svg"><img src="readme/display-schematic.svg" width="600" /></a>
 </p>
 
 ## Control panel
@@ -24,7 +28,11 @@ Control panel lets staff to quickly adjust recorded occupancy by:
 * subtracting to counter.
 
 <p align="center">
-    <img src="readme/control-panel.jpg" width="300" />
+    <a href="readme/control-panel.jpg"><img src="readme/control-panel.jpg" width="300" /></a>
+</p>
+
+<p align="center">
+    <a href="readme/control-panel-schematic.svg"><img src="readme/control-panel-schematic.svg" width="300" /></a>
 </p>
 
 ## Ultrasound sensors
