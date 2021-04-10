@@ -9,6 +9,7 @@ fun Javalin.apiRoutes() = routes {
     get("/stats/:conveyUUID") { context ->
         val conveyUUID = context.pathParam("conveyUUID")
         val stats = ActionDao.calculateStatsDataFor(conveyUUID)
+        context.header("Access-Control-Allow-Origin", "*")
         context.json(stats)
     }
 
