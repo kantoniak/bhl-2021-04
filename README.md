@@ -7,37 +7,50 @@ It comprises:
 * displays with a warning sign for visitors,
 * control panels for security.
 
-## Display
+## Hardware
 
-Display show the number of people currently in the space. When treshold is reached, warning light turns red and the display is blinking.
+### Ultrasound and beam sensors
+
+A pair of HC-SR04 ultrasound sensors detects when someone enter or exit room.
+It sends events to main server thus can operate as standalone device based on Raspberry PI.
+
+Beside power and ground pins, the sensors require 4 GPIO pins (each sensor has TRIGGER and ECHO pins).
 
 <p align="center">
-    <img src="readme/display-green.jpg" width="300" />
-    <img src="readme/display-red.jpg" width="300" />
+    <a href="readme/ultrasound.jpg"><img src="readme/ultrasound.jpg" width="400" /></a>
 </p>
 
-## Control panel
+<p align="center">
+    <a href="readme/sensors-schematic.svg"><img src="readme/sensors-schematic.svg" width="400" /></a>
+</p>
 
-Control panel lets staff to quickly adjust recorded occupancy by:
+### Display
+
+Display shows the number of people who entered the space. When treshold is reached, warning light turns red and the display is blinking.
+
+<p align="center">
+    <a href="readme/display-green.jpg"><img src="readme/display-green.jpg" width="300" /></a>
+    <a href="readme/display-red.jpg"><img src="readme/display-red.jpg" width="300" /></a>
+</p>
+
+<p align="center">
+    <a href="readme/display-schematic.svg"><img src="readme/display-schematic.svg" width="600" /></a>
+</p>
+
+### Control panel
+
+Control panel lets staff quickly adjust recorded occupancy by:
 * adding to counter,
 * resetting counter value,
 * subtracting to counter.
 
 <p align="center">
-    <img src="readme/control-panel.jpg" width="300" />
+    <a href="readme/control-panel.jpg"><img src="readme/control-panel.jpg" width="300" /></a>
 </p>
-
-## Ultrasound sensors
-
-A pair of HC-SR04 ultrasound sensors detects when someone enter or exit room.
-It sends events to main server thus can operate as standalone device based on Raspberry PI.
-
-Beside power and ground pins, the sensors require 4 GPIO pins (each sensor has TRIGER and ECHO pins).
 
 <p align="center">
-    <img src="readme/ultrasound.jpg" width="400" />
+    <a href="readme/control-panel-schematic.svg"><img src="readme/control-panel-schematic.svg" width="300" /></a>
 </p>
-
 
 ## Development
 
