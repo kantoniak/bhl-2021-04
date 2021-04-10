@@ -4,7 +4,7 @@ from uuid import uuid4
 from requests import get, post
 
 
-CONVEY_UUID = str(uuid4())
+CONVEY_UUID = "bhl-tpp"  # str(uuid4())
 BASE_URL = "https://bhl-counter.herokuapp.com"
 
 
