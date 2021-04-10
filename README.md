@@ -22,7 +22,7 @@ Display shows the number of people who entered the space. When treshold is reach
 
 ## Control panel
 
-Control panel lets staff to quickly adjust recorded occupancy by:
+Control panel lets staff quickly adjust recorded occupancy by:
 * adding to counter,
 * resetting counter value,
 * subtracting to counter.
