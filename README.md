@@ -21,7 +21,7 @@ Beside power and ground pins, the sensors require 4 GPIO pins (each sensor has T
 </p>
 
 <p align="center">
-    <a href="readme/sensors-schematic.svg"><img src="readme/sensors-schematic.svg" width="600" /></a>
+    <a href="readme/sensors-schematic.svg"><img src="readme/sensors-schematic.svg" width="400" /></a>
 </p>
 
 ### Display
