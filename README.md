@@ -1,11 +1,13 @@
-# PROJNAME
+# People counter
 
-PROJNAME is a system helping to enforce occupancy limits in public spaces by counting people coming in and out.
+People counter is a system helping to enforce occupancy limits in public spaces by counting people coming in and out.
 It comprises:
 * a central server for tracking devices,
 * counter devices with ultrasonic and IR sensors,
 * displays with a warning sign for visitors,
 * control panels for security.
+
+See demo: https://www.youtube.com/watch?v=Mto_cI-SvnQ
 
 ## Hardware
 
