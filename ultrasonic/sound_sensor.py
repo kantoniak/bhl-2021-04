@@ -7,7 +7,7 @@ from ultra_sensor import distance
 import RPi.GPIO as GPIO
 import time
 import math
-import client.client
+import client
 
 class UltrasoundSensor(object):
 

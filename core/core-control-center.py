@@ -1,4 +1,8 @@
-from client import client
+import os
+import sys
+sys.path.append(os.getcwd() + '/../client')
+
+import client
 
 import board
 import RPi.GPIO as GPIO
