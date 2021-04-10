@@ -6,6 +6,7 @@ It comprises:
 * counter devices with ultrasonic and IR sensors,
 * displays with a warning sign for visitors,
 * control panels for security.
+* a web app for controling a device remotely
 
 See demo: https://youtu.be/eT9w5s_Paic
 
@@ -66,6 +67,14 @@ Control panel lets staff quickly adjust recorded occupancy by:
 
 <p align="center">
     <a href="readme/control-panel-schematic.svg"><img src="readme/control-panel-schematic.svg" width="300" /></a>
+</p>
+
+### Web app
+
+The web app displays the current number of people in a specified room. It allows for remote control over the people count in a room by connecting to the REST API Server.
+
+<p align="center">
+    <a href="readme/front-end.jpg"><img src="readme/front-end.jpg" width="300" /></a>
 </p>
 
 ## Development
