@@ -1,0 +1,33 @@
+name: Webserver deploy for production
+
+on:
+  push:
+    branches:
+    - 'master'
+    paths:
+    - 'server/**'
+    - '.github/workflows/deploy_server.yaml'
+
+jobs:
+  build:
+    name: Checkout and deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@master
+        with:
+          ref: ${{ github.ref }}
+      - name: Deploy to Heroku
+        if: job.status == 'success'
+        run: |
+          rm -rf .git
+          git clone https://heroku:${{ secrets.HEROKU_API_KEY }}@git.heroku.com/bhl-counter.git
+          cd bhl-counter                                                                        
+          find . -maxdepth 1 ! -path './.git' ! -path '.' -exec rm -rf {} +  
+          git config --global user.email "deploy@heroku.com"
+          git config --global user.name "bhl-tpp"
+          git commit . -m "Cleaned old data"
+          cp -r ../server/* ./
+          git add .
+          git commit . -m "Deploy full refresh of app from ${{ github.ref }}"
+          git push

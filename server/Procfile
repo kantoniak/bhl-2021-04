@@ -1,0 +1,2 @@
+web: java $JAVA_OPTS -jar build/libs/counter-1.0.jar
+
