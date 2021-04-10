@@ -58,5 +58,6 @@ resetButton.addEventListener('click', reset);
 increaseButton.addEventListener('click', increase);
 
 updateCounter();
+setInterval(() => updateCounter(), 500);
 
 counter.addEventListener('sync', updateCounter);
