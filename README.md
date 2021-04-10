@@ -74,7 +74,7 @@ Control panel lets staff quickly adjust recorded occupancy by:
 The web app displays the current number of people in a specified room. It allows for remote control over the people count in a room by connecting to the REST API Server.
 
 <p align="center">
-    <a href="readme/front-end.png"><img src="readme/front-end.png" width="300" /></a>
+    <a href="readme/front-end.PNG"><img src="readme/front-end.PNG" width="300" /></a>
 </p>
 
 ## Development
