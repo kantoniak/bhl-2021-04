@@ -27,7 +27,7 @@ Beside power and ground pins, the sensors require 4 GPIO pins (each sensor has T
     <a href="readme/sensors-schematic.svg"><img src="readme/sensors-schematic.svg" width="400" /></a>
 </p>
 
-A single beam interruption sensor detects an event of entering or exiting the room, but doesn't distinguish between the two types.
+A single beam interruption sensor (not in the photo) detects an event of entering or exiting the room, but doesn't distinguish between the two types.
 It relies on the pair of ultrasound sensors to decide wheter an exit or an enter event occured.
 
 The beam sensor requires a power pin, a ground pin and a GPIO pin.
@@ -45,15 +45,6 @@ Display shows the number of people who entered the space. When treshold is reach
     <a href="readme/display-schematic.svg"><img src="readme/display-schematic.svg" width="600" /></a>
 </p>
 
-### REST API Server
-
-A REST API Server that allows us to increase, decrease or reset the number of people in the specified room was created. The server was written in Kotlin and deployed on a production server - we managed to make it public. The API consists of 4 endpoints:
-
-* https://bhl-counter.herokuapp.com/exit to dispatch an exit event
-* https://bhl-counter.herokuapp.com/enter to dispatch an enter event
-* https://bhl-counter.herokuapp.com/reset to reset the number of people in the specified room
-* https://bhl-counter.herokuapp.com/stats/id to get the number of people in room `id`
-
 ### Control panel
 
 Control panel lets staff quickly adjust recorded occupancy by:
@@ -68,6 +59,17 @@ Control panel lets staff quickly adjust recorded occupancy by:
 <p align="center">
     <a href="readme/control-panel-schematic.svg"><img src="readme/control-panel-schematic.svg" width="300" /></a>
 </p>
+
+## Software
+
+### REST API Server
+
+A REST API Server that allows us to increase, decrease or reset the number of people in the specified room was created. The server was written in Kotlin and deployed on a production server - we managed to make it public. The API consists of 4 endpoints:
+
+* https://bhl-counter.herokuapp.com/exit to dispatch an exit event
+* https://bhl-counter.herokuapp.com/enter to dispatch an enter event
+* https://bhl-counter.herokuapp.com/reset to reset the number of people in the specified room
+* https://bhl-counter.herokuapp.com/stats/id to get the number of people in room `id`
 
 ### Web app
 
