@@ -7,6 +7,8 @@ const increaseButton = document.getElementById('increase');
 
 const counter = document.getElementById('counter');
 
+const sync = new Event('sync');
+
 function time() {
     return Date.now();
 }
@@ -29,26 +31,32 @@ async function post(url = '', data = {}) {
 
 async function decrease() {
     const exit = await post(`${baseUrl}/exit`, { conveyUUID: baseUUID, timestamp: time()});
+    counter.dispatchEvent(sync);
     return exit;
 }
 
 async function reset() {
     const reset = await post(`${baseUrl}/reset`, { conveyUUID: baseUUID, timestamp: time()});
+    counter.dispatchEvent(sync);
     return reset;
 }
 
 async function increase() {
     const enter = await post(`${baseUrl}/enter`, { conveyUUID: baseUUID, timestamp: time()});
+    counter.dispatchEvent(sync);
     return enter;
 }
 
 async function updateCounter() {
+    fetch(`${baseUrl}/stats/${baseUUID}`)
+        .then(response => response.json())
+        .then(data => counter.textContent = `Counter: ${data.current}`);
 }
 
-decreaseButton.addEventListener("click", decrease);
-resetButton.addEventListener("click", reset);
-increaseButton.addEventListener("click", increase);
+decreaseButton.addEventListener('click', decrease);
+resetButton.addEventListener('click', reset);
+increaseButton.addEventListener('click', increase);
 
-fetch(`${baseUrl}/stats/${baseUUID}`)
-  .then(response => response.text())
-  .then(data => console.log(data));
+updateCounter();
+
+counter.addEventListener('sync', updateCounter);
