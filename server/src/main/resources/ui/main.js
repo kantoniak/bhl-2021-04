@@ -50,7 +50,7 @@ async function increase() {
 async function updateCounter() {
     fetch(`${baseUrl}/stats/${baseUUID}`)
         .then(response => response.json())
-        .then(data => counter.textContent = `Counter: ${data.current}`);
+        .then(data => counter.textContent = `Occupancy: ${data.current}`);
 }
 
 decreaseButton.addEventListener('click', decrease);

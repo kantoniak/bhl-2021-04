@@ -3,6 +3,12 @@
   font-size: 28px;
 }
 
+
+body {
+  padding-top: 5rem;
+  background: #FCFCFC;
+}
+
 .buttons {
   margin-top: 1.25rem;
   display: flex;
