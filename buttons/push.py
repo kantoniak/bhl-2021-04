@@ -19,9 +19,9 @@ GPIO.setup(BUTTON1_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(BUTTON2_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(BUTTON3_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
-GPIO.add_event_detect(BUTTON1_PIN,GPIO.RISING,callback=button1_callback)
-GPIO.add_event_detect(BUTTON2_PIN,GPIO.RISING,callback=button2_callback)
-GPIO.add_event_detect(BUTTON3_PIN,GPIO.RISING,callback=button3_callback)
+GPIO.add_event_detect(BUTTON1_PIN,GPIO.RISING, callback=button1_callback, debounce=500)
+GPIO.add_event_detect(BUTTON2_PIN,GPIO.RISING, callback=button2_callback, debounce=500)
+GPIO.add_event_detect(BUTTON3_PIN,GPIO.RISING, callback=button3_callback, debounce=500)
 
 message = input("Press enter to quit\n\n")
 
